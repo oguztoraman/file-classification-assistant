@@ -1,0 +1,109 @@
+#!/bin/bash
+echo "File Classification Assistant is starting..."
+sleep 3
+OLDIFS=$IFS
+IFS=$(echo -en "\n\b")
+echo "Enter the directory to be classified:"
+read directory
+mkdir -p $directory/Classified\ Files/Archive $directory/Classified\ Files/Audio $directory/Classified\ Files/Codes $directory/Classified\ Files/Document $directory/Classified\ Files/Empty $directory/Classified\ Files/Image $directory/Classified\ Files/Media $directory/Classified\ Files/Text $directory/Classified\ Files/Undetermined &
+echo "Files are finding and classifying..."
+echo "It may take some time..."
+files=`find $directory -type f | sort`
+for i in $files; do
+        if [ `file -b $i | grep -i archive | wc -l` -gt 0 ]; 
+        then
+                echo $i >> $directory/Classified\ Files/.archive.txt
+        elif [ `file -b $i | grep -i compressed | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.archive.txt
+        elif [ `file -b $i | grep -i audio | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.audio.txt
+        elif [ `file -b $i | grep -i document | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.document.txt
+        elif [ `file -b $i | grep -i htmlhelp | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.document.txt
+        elif [ `file -b $i | grep -i image | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.image.txt
+        elif [ `file -b $i | grep -i media | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.media.txt
+        elif [ `file -b $i | grep -i text | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.text.txt
+        elif [ `file -b $i | grep -i microsoft | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.text.txt              
+        elif [ `file -b $i | grep -i empty | wc -l` -gt 0 ];
+        then
+                echo $i >> $directory/Classified\ Files/.empty.txt
+        else 
+				echo $i >> $directory/Classified\ Files/.undetermined.txt
+        fi
+done
+archive=$(<$directory/Classified\ Files/.archive.txt) && rm -f $directory/Classified\ Files/.archive.txt
+audio=$(<$directory/Classified\ Files/.audio.txt) && rm -f $directory/Classified\ Files/.audio.txt
+document=$(<$directory/Classified\ Files/.document.txt) && rm -f $directory/Classified\ Files/.document.txt
+image=$(<$directory/Classified\ Files/.image.txt) && rm -f $directory/Classified\ Files/.image.txt
+media=$(<$directory/Classified\ Files/.media.txt) && rm -f $directory/Classified\ Files/.media.txt
+text=$(<$directory/Classified\ Files/.text.txt) && rm -f $directory/Classified\ Files/.text.txt
+empty=$(<$directory/Classified\ Files/.empty.txt) && rm -f $directory/Classified\ Files/.empty.txt
+undetermined=$(<$directory/Classified\ Files/.undetermined.txt) && rm -f $directory/Classified\ Files/.undetermined.txt
+echo "File classification completed!"
+echo
+echo
+echo "Moving Archive files to $directory/Classified\ Files/Archive..."
+for i in $archive; do mv -vi $i $directory/Classified\ Files/Archive; done
+echo
+echo
+echo "Moving Audio files to $directory/Classified\ Files/Audio..."
+for i in $audio; do mv -vi $i $directory/Classified\ Files/Audio; done
+echo
+echo
+echo "Moving Document files to $directory/Classified\ Files/Document..."
+for i in $document; do mv -vi $i $directory/Classified\ Files/Document; done
+echo
+echo
+echo "Moving Image files to $directory/Classified\ Files/Image..."
+for i in $image; do mv -vi $i $directory/Classified\ Files/Image; done
+echo
+echo
+echo "Moving Media files to $directory/Classified\ Files/Media..."
+for i in $media; do mv -vi $i $directory/Classified\ Files/Media; done
+echo
+echo
+echo "Moving Text files to $directory/Classified\ Files/Text..."
+for i in $text; do mv -vi $i $directory/Classified\ Files/Text; done
+echo
+echo
+echo "Source Code files are finding and classifying..."
+echo "It may take some time..."
+files=`find $directory/Classified\ Files/Text -type f | sort`
+for i in $files; do
+        if [ `file -b $i | grep -i source | wc -l` -gt 0 ]; 
+        then
+                echo $i >> $directory/Classified\ Files/.code.txt
+        elif [ `file -b $i | grep -i script | wc -l` -gt 0 ];
+        then
+				echo $i >> $directory/Classified\ Files/.code.txt
+		fi
+done
+code=$(<$directory/Classified\ Files/.code.txt) && rm -f $directory/Classified\ Files/.code.txt
+echo "Moving Source Code files to $directory/Classified\ Files/Codes..."
+for i in $code; do mv -vi $i $directory/Classified\ Files/Codes; done
+echo
+echo
+echo "Moving Empty files to $directory/Classified\ Files/Empty..."
+for i in $empty; do mv -vi $i $directory/Classified\ Files/Empty; done
+echo
+echo
+echo "Moving Undetermined files to $directory/Classified\ Files/Undetermined..."
+for i in $undetermined; do mv -vi $i $directory/Classified\ Files/Undetermined; done
+echo
+echo
+echo "Done!"
+IFS=$SAVEIFS
+exit
