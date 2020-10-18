@@ -41,7 +41,7 @@ for i in $files; do
         then
                 echo $i >> $directory/Classified\ Files/.empty.txt
         else 
-				echo $i >> $directory/Classified\ Files/.undetermined.txt
+		echo $i >> $directory/Classified\ Files/.undetermined.txt
         fi
 done
 archive=$(<$directory/Classified\ Files/.archive.txt) && rm -f $directory/Classified\ Files/.archive.txt
@@ -88,8 +88,8 @@ for i in $files; do
                 echo $i >> $directory/Classified\ Files/.code.txt
         elif [ `file -b $i | grep -i script | wc -l` -gt 0 ];
         then
-				echo $i >> $directory/Classified\ Files/.code.txt
-		fi
+		echo $i >> $directory/Classified\ Files/.code.txt
+	fi
 done
 code=$(<$directory/Classified\ Files/.code.txt) && rm -f $directory/Classified\ Files/.code.txt
 echo "Moving Source Code files to $directory/Classified\ Files/Codes..."
