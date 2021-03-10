@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  file-classification-assistant-v2.sh
+#  file-classification-assistant.sh
 #  
 #  Copyright 2020 Oğuz Toraman <oguz.toraman@protonmail.com>
 #  
@@ -20,7 +20,7 @@
 #  
 
 echo "File Classification Assistant is starting..."
-sleep 3
+sleep 1
 OLDIFS=$IFS
 IFS=$(echo -en "\n\b")
 echo "Enter the directory to be classified:"
