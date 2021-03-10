@@ -25,7 +25,7 @@ OLDIFS=$IFS
 IFS=$(echo -en "\n\b")
 echo "Enter the directory to be classified:"
 read directory
-for i in {Archive,Audio,Codes,Document,Empty,Image,Media,Text,Undetermined} ; do
+for i in {Archive,Audio,Codes,Document,Empty,Image,Media,Text,Undetermined}; do
 	mkdir -p $directory/Classified\ Files/$i &
 done
 echo "Files are finding and classifying..."
