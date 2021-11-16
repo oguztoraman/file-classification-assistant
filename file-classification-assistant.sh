@@ -102,7 +102,7 @@ echo
 echo
 echo "Source Code files are finding and classifying..."
 echo "It may take some time..."
-files=`find $directory/Classified\ Files/Text -type f | sort`
+files=$(find $directory/Classified\ Files/Text -type f | sort)
 for i in $files; do
         if [ $(file -b $i | grep -i source | wc -l) -gt 0 ]; 
         then
