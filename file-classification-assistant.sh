@@ -31,34 +31,34 @@ echo "Files are finding and classifying..."
 echo "It may take some time..."
 files=`find $directory -type f | sort`
 for i in $files; do
-        if [ `file -b $i | grep -i archive | wc -l` -gt 0 ]; 
+        if [ $(file -b $i | grep -i archive | wc -l) -gt 0 ]; 
         then
                 echo $i >> $directory/Classified\ Files/.archive.txt
-        elif [ `file -b $i | grep -i compressed | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i compressed | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.archive.txt
-        elif [ `file -b $i | grep -i audio | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i audio | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.audio.txt
-        elif [ `file -b $i | grep -i document | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i document | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.document.txt
-        elif [ `file -b $i | grep -i htmlhelp | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i htmlhelp | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.document.txt
-        elif [ `file -b $i | grep -i image | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i image | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.image.txt
-        elif [ `file -b $i | grep -i media | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i media | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.media.txt
-        elif [ `file -b $i | grep -i text | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i text | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.text.txt
-        elif [ `file -b $i | grep -i microsoft | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i microsoft | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.text.txt              
-        elif [ `file -b $i | grep -i empty | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i empty | wc -l) -gt 0 ];
         then
                 echo $i >> $directory/Classified\ Files/.empty.txt
         else 
