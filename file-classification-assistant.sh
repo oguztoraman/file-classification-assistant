@@ -23,13 +23,13 @@ sleep 1
 OLDIFS=$IFS
 IFS=$(echo -en "\n\b")
 echo "Enter the directory to be classified:"
-read directory
+read -r directory
 for i in {Archive,Audio,Codes,Document,Empty,Image,Media,Text,Undetermined}; do
 	mkdir -p $directory/Classified\ Files/$i &
 done
 echo "Files are finding and classifying..."
 echo "It may take some time..."
-files=`find $directory -type f | sort`
+files=$(find $directory -type f | sort)
 for i in $files; do
         if [ $(file -b $i | grep -i archive | wc -l) -gt 0 ]; 
         then
@@ -104,10 +104,10 @@ echo "Source Code files are finding and classifying..."
 echo "It may take some time..."
 files=`find $directory/Classified\ Files/Text -type f | sort`
 for i in $files; do
-        if [ `file -b $i | grep -i source | wc -l` -gt 0 ]; 
+        if [ $(file -b $i | grep -i source | wc -l) -gt 0 ]; 
         then
                 echo $i >> $directory/Classified\ Files/.code.txt
-        elif [ `file -b $i | grep -i script | wc -l` -gt 0 ];
+        elif [ $(file -b $i | grep -i script | wc -l) -gt 0 ];
         then
 		echo $i >> $directory/Classified\ Files/.code.txt
 	fi
