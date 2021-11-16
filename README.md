@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/oguztoraman/file-classification-assistant/badge)](https://www.codefactor.io/repository/github/oguztoraman/file-classification-assistant)
+
 # File Classification Assistant
 
 A Bash script that classifies files in any directory by file type.
