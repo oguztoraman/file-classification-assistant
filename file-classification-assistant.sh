@@ -2,7 +2,7 @@
 #
 #  file-classification-assistant.sh
 #  
-#  Copyright 2020-2022 Oğuz Toraman <oguz.toraman@protonmail.com>
+#  Copyright 2020-2023 Oğuz Toraman <oguz.toraman@protonmail.com>
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
